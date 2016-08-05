@@ -4,7 +4,8 @@
         <name value="Panopto Connector" />
         <description value="Provision Panopto courses from Blackboard.  View live listing of available Panopto content from within the associated Blackboard course.  Import Panopto lecture links as Blackboard content items." />
         <handle value="PanoptoCourseTool" />
-        <version value="4.9.5" />
+        <webapp-type value="javaext" />
+        <version value="4.9.7" />
         <requires>
             <bbversion value="9.1" />
         </requires>
@@ -59,17 +60,31 @@
                         <name value="Panopto Video" />
                         <url value="vtbe/mashup.jsp?course_id=@X@course.pk_string@X@" />
                         <description value="This mashup tool allows you to embed videos from your hard drive or from your Panopto site anywhere in Blackboard." />
-                    </link>
+                    </link>       
                 </links>
             </application>
         </application-defs>
+        <extension-defs>
+        	<definition namespace="blackboard.platform">
+				<extension id="myNewCloneCourseEventListener"
+						   point = "blackboard.cmsadmin.postCloneCourseEventListener"
+                           class = "com.panopto.blackboard.EventListener"
+                           singleton="true"/>
+            </definition>
+            <definition namespace="blackboard.platform">
+                <extension id="myNewCreateCourseEventListener"
+                           point="blackboard.cmsadmin.postCreateCourseEventListener"
+                           class="com.panopto.blackboard.EventListener"
+                           singleton="true"/>                         
+            </definition>
+        </extension-defs>
         <permissions>
             <!-- Change value of "name" attribute below to restrict socket access to your Panopto server -->
             <!-- e.g. name="panopto.myinstitution.edu" -->
             <permission type="socket" name="*" actions="connect" />
             <permission type="runtime" name="getClassLoader" actions="" />
             <permission type="persist" name="content" actions="persist" />
-            <permission type="blackboard.persist.PersistPermission" name="coursetoc" actions="create,modify,delete"/>
+            <permission type="blackboard.persist.PersistPermission" name="coursetoc" actions="create,modify,delete"/> 
             <permission type="blackboard.data.AttributePermission" name="user.authinfo" actions="get" />
             <permission type="blackboard.data.AttributePermission" name="user.personalinfo" actions="get" />
             <!-- Request the rendering hook permission to avoid the 'action already submitted' message from bug 16109 -->
@@ -83,7 +98,7 @@
             <entitlement uid="system.panopto.EXECUTE"
                          label="system.panopto.EXECUTE.label"
                          type="System"
-                         template="system.configure-tools.EXECUTE" />
+                         template="system.configure-tools.EXECUTE" />                        
         </entitlements>
     </plugin>
 </manifest>
