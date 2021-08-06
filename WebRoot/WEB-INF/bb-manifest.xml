@@ -86,7 +86,7 @@
                 <links>
                     <link>
                         <type value="vtbe_mashup_course" />
-                        <name value="Panopto Video" />
+                        <name value="Staff Panopto Video" />
                         <url value="vtbe/mashup.jsp?course_id=@X@course.pk_string@X@" />
                         <description value="This mashup tool allows you to embed videos from your hard drive or from your Panopto site anywhere in Blackboard." />
                     </link>
@@ -99,7 +99,7 @@
                 <links>
                     <link>
                         <type value="vtbe_mashup_course" />
-                        <name value="Panopto Student Video Submission" />
+                        <name value="Student Panopto Video Submission" />
                         <url value="vtbe/assignmentMashup.jsp?course_id=@X@course.pk_string@X@" />
                         <description value="This mashup tool allows you to embed videos for assignments in Blackboard." />
                     </link>
